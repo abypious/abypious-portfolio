@@ -1,7 +1,7 @@
 export const skills = {
   core: [
     { name: "React", icon: "/icons/React.svg", level: 85 },
-    { name: "Next.js", icon: "/icons/next.js.png", level: 75 },
+    { name: "Next.js", icon: "/icons/next.js.svg", level: 75 },
     { name: "Node.js", icon: "/icons/Node.js.svg", level: 70 },
     { name: "Flutter", icon: "/icons/Flutter.svg", level: 55 },
   ],
