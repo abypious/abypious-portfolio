@@ -73,9 +73,9 @@ export default function ContactPage() {
             {/* Social Icons */}
             <div className="flex gap-6 ml-2">
               {[
-                { icon: <Instagram size={26} />, href: "https://instagram.com" },
-                { icon: <Linkedin size={26} />, href: "https://linkedin.com" },
-                { icon: <Github size={26} />, href: "https://github.com" },
+                { icon: <Instagram size={26} />, href: "https://www.instagram.com/mr.pious_/" },
+                { icon: <Linkedin size={26} />, href: "https://linkedin.com/in/abypious" },
+                { icon: <Github size={26} />, href: "https://github.comhttps://github.com/abypious" },
                 { icon: <Mail size={26} />, href: `mailto:${email}` },
               ].map((item, i) => (
                 <a
