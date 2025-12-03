@@ -4,7 +4,6 @@ import PageTemplate from "../../components/PageTemplate";
 import { motion } from "framer-motion";
 
 export default function ExperiencePage() {
-
   const experiences = [
     {
       title: "Software Developer",
@@ -28,15 +27,11 @@ export default function ExperiencePage() {
 
   return (
     <PageTemplate title="Experience" helpText="A quick timeline of my journey so far.">
+      <div className="flex justify-center w-full pt-10 pb-6">
+        <div className="relative w-full space-y-8">
 
-      <div className="flex flex-col items-center w-full mt-10">
-        <div className="w-full max-w-3xl space-y-10 relative">
-
-          {/* Vertical Line */}
-          <div className="absolute left-3 top-0 bottom-0 w-[2.5px] bg-[#ef41496a]"></div>
-
-          {experiences.map((item, idx) => (
-            <TimelineCard key={idx} {...item} />
+          {experiences.map((exp, i) => (
+            <TimelineCard key={i} {...exp} />
           ))}
         </div>
       </div>
@@ -45,7 +40,7 @@ export default function ExperiencePage() {
 }
 
 
-/* ------- COMPONENTS ------- */
+/* ---------- Card Component ---------- */
 
 function TimelineCard({ title, place, duration, logo }) {
   return (
@@ -53,31 +48,35 @@ function TimelineCard({ title, place, duration, logo }) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4 }}
-      className="relative pl-10"
+      className="relative pl-12 sm:pl-20 ga"
     >
-      {/* Timeline Node */}
-      <div className="absolute left-1 top-10 w-5 h-5 rounded-full bg-[#ef4149] shadow-[0_0_12px_#ef4149]"></div>
+      {/* Node Pin */}
+      <motion.div
+        whileHover={{ scale: 1.2 }}
+        className="absolute left-[20px] sm:left-[30px] top-8 w-5 h-5 rounded-full bg-[#ef4149] shadow-[0_0_12px_#ef4149]"
+      ></motion.div>
 
       {/* Card */}
       <motion.div
-        whileHover={{ scale: 1.02 }}
-        className="border border-[#ef41494f] rounded-xl bg-black/40 p-4 transition-all group hover:border-[#ef4149]  mr-5"
+        whileHover={{ scale: 1.03, boxShadow: "0 0 18px rgba(239,65,73,0.35)" }}
+        transition={{ duration: 0.3 }}
+        className="border border-[#ef41494f] bg-black/40 backdrop-blur-lg rounded-xl p-5 sm:p-6"
       >
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4 sm:gap-6">
 
           {/* Logo */}
           <img
             src={logo}
             alt={place}
-            className="w-25 h-25 object-contain opacity-80 group-hover:opacity-100 
-            group-hover:drop-shadow-[0_0_8px_#ef4149] transition-all"
+            className="w-20 h-20 sm:w-20 sm:h-20 object-contain 
+                       opacity-80 group-hover:opacity-100 transition-all"
           />
 
           {/* Text */}
           <div>
-            <p className="text-xl font-semibold">{title}</p>
-            <p className="opacity-60 text-base">{place}</p>
-            <p className="opacity-30 text-xs mt-1">{duration}</p>
+            <p className="text-lg sm:text-xl font-semibold">{title}</p>
+            <p className="text-sm sm:text-base opacity-70">{place}</p>
+            <p className="text-xs sm:text-sm opacity-40 mt-1">{duration}</p>
           </div>
         </div>
       </motion.div>

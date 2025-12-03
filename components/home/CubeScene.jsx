@@ -1,77 +1,72 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useRef } from "react";
+import { useRouter } from "next/navigation";
 import "../../styles/cube.css";
-import { CircleHelp } from "lucide-react";
 
 const navLinks = [
-    { label: "Certificates", href: "/certificates" },
-    { label: "Skills", href: "/skills" },
-    { label: "Contact", href: "/contact" },
-    { label: "Education", href: "/education" },
-    { label: "About", href: "/about" },
-    { label: "Projects", href: "/projects" },
-    { label: "Experience", href: "/experience" },
-   
+  { label: "Certificates", href: "/certificates" },
+  { label: "Skills", href: "/skills" },
+  { label: "Contact", href: "/contact" },
+  { label: "Education", href: "/education" },
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Experience", href: "/experience" },
 ];
 
-export default function CubeScene() {
-  const [hovered, setHovered] = useState(null);
-  const [typed, setTyped] = useState("");
+export default function CubeScene({ setHovered }) {
+  const router = useRouter();
+  const pressTimer = useRef(null);
+  const isLongPress = useRef(false);
+  const awaitingSecondTap = useRef(false);
 
-  useEffect(() => {
-    if (!hovered) {
-      setTyped("");
+  const isMobile = typeof window !== "undefined" &&
+    window.matchMedia("(pointer: coarse)").matches;
+
+  const handleTouchStart = (label) => {
+    isLongPress.current = false;
+
+    pressTimer.current = setTimeout(() => {
+      isLongPress.current = true;
+      awaitingSecondTap.current = true;
+      setHovered(label);
+
+      if (navigator?.vibrate) navigator.vibrate(40);
+    }, 350);
+  };
+
+  const handleTouchEnd = (href) => {
+    clearTimeout(pressTimer.current);
+
+    if (isLongPress.current) return;
+
+    if (awaitingSecondTap.current) {
+      awaitingSecondTap.current = false;
+      setHovered(null);
+      router.push(href);
       return;
     }
 
-    const text = `<${hovered}/>`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setTyped(text.slice(0, index));
-      index++;
-
-      if (index > text.length) {
-        clearInterval(interval);
-      }
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, [hovered]);
+    router.push(href);
+  };
 
   return (
-    <>
-      <div className="cube-container">
-        {navLinks.map((item, i) => (
-          <Link
-            key={i}
-            href={item.href}
-            className="cube-block"
-            onMouseEnter={() => setHovered(item.label)}
-            onMouseLeave={() => setHovered(null)}
-          >
-            <span></span>
-          </Link>
-        ))}
-      </div>
+    <div className="cube-container">
+      {navLinks.map((item, i) => (
+        <div
+          key={i}
+          className="cube-block"
+          onMouseEnter={!isMobile ? () => setHovered(item.label) : undefined}
+          onMouseLeave={!isMobile ? () => setHovered(null) : undefined}
 
-      {/* Help Icon */}
-        <div 
-        className="help-icon"
-        onMouseEnter={() => setHovered("Click on a cube for navigation")}
-        onMouseLeave={() => setHovered(null)}
+          // 👇 Desktop click navigation
+          onClick={!isMobile ? () => router.push(item.href) : undefined}
+
+          // 👇 Mobile long press logic
+          onTouchStart={isMobile ? () => handleTouchStart(item.label) : undefined}
+          onTouchEnd={isMobile ? () => handleTouchEnd(item.href) : undefined}
         >
-        <CircleHelp size={10} strokeWidth={2} />
+          <span></span>
         </div>
-
-    {/* Hover Label */}
-      <div className={`hover-label ${hovered ? "visible" : ""}`}>
-        {typed}
-        {hovered && <span className="cursor" />}
-      </div>
-
-    </>
+      ))}
+    </div>
   );
 }

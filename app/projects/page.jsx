@@ -60,89 +60,98 @@ export default function ProjectPage() {
   return (
     <PageTemplate title="Projects" helpText="Major projects + highlights.">
 
-      <motion.div 
-        className="grid grid-cols-3 gap-6 w-full max-w-[1350px] mx-auto mt-8"
+      {/* Responsive Grid */}
+      <motion.div
+        className="
+          grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          lg:grid-cols-3 
+          gap-6 
+          w-full 
+          max-w-[1400px] 
+          mx-auto 
+          mt-8 
+          pb-20
+          px-3 sm:px-6
+        "
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
-
         {majorProjects.map((item, i) => (
           <motion.div
             key={i}
-            whileHover={{
-              scale: 1.03,
-              boxShadow: "0 0 18px rgba(239,65,73,0.35)",
-            }}
+            whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(239,65,73,0.35)" }}
             transition={{ duration: 0.22 }}
-            className="bg-black/50 border border-[#ef4149] rounded-2xl p-6 backdrop-blur-md h-[260px] flex flex-col justify-between"
+            className="
+              bg-black/50 border border-[#ef4149] rounded-2xl 
+              p-5 sm:p-6 
+              backdrop-blur-md 
+              flex flex-col justify-between 
+              min-h-[220px] 
+            "
           >
-            {/* TITLE */}
-            <div className="space-y-[2px]">
-              <h3 className="font-bold text-[18px] mb-1">{item.name}</h3>
-              <p className="text-[12px] opacity-70">{item.tagline}</p>
+            {/* Header */}
+            <div>
+              <h3 className="font-bold text-lg mb-1">{item.name}</h3>
+              <p className="text-xs opacity-70 sm:text-sm">{item.tagline}</p>
             </div>
 
-            {/* DESCRIPTION */}
-            <p className="text-[16px] opacity-85 leading-tight text-left">{item.desc}</p>
+            {/* Description */}
+            <p className="text-sm sm:text-base opacity-85 leading-tight mt-3 mb-3 text-left">
+              {item.desc}
+            </p>
 
-            {/* STACK + DATE + LINK */}
-            <div className="flex justify-between items-end">
-              
-              {/* STACK TAGS */}
-              <div className="flex flex-wrap gap-2 text-[11px] max-w-[160px]">
+            {/* Footer */}
+            <div className="flex justify-between items-end mt-auto">
+              <div className="flex flex-wrap gap-1 sm:gap-2 text-[10px] sm:text-[11px] max-w-[180px]">
                 {item.stack.map((tech, idx) => (
-                  <span 
-                    key={idx} 
-                    className="bg-[#ef4149] px-2 py-[2px] rounded-md"
-                  >
+                  <span key={idx} className="bg-[#ef4149] px-2 py-[2px] rounded-md">
                     {tech}
                   </span>
                 ))}
               </div>
 
-              <div className="text-right flex flex-col items-end gap-[4px]">
-                {/* DATE BADGE */}
-                <span className="text-[11px] px-2 py-[2px] border border-[#ef4149] rounded-md opacity-80">
+              <div className="text-right flex flex-col items-end">
+                <span className="text-[10px] sm:text-[12px] px-2 py-[2px] border border-[#ef4149] rounded-md opacity-80">
                   {item.date}
                 </span>
 
                 <a 
-                  href={item.link}
-                  className="text-[#ef4149] text-[13px] flex gap-1 items-center hover:underline"
+                  href={item.link} 
+                  className="text-[#ef4149] text-xs sm:text-sm flex gap-1 items-center hover:underline"
                 >
-                  View <ExternalLink size={12}/>
+                  View <ExternalLink size={14}/>
                 </a>
               </div>
             </div>
           </motion.div>
         ))}
 
-        {/* OTHER PROJECTS CARD */}
+        {/* Other Projects card */}
         <motion.div
-          whileHover={{
-            scale: 1.03,
-            boxShadow: "0 0 18px rgba(239,65,73,0.35)",
-          }}
-          transition={{ duration: 0.22 }}
-          className="bg-black/50 border border-[#ef4149] rounded-2xl p-6 backdrop-blur-md h-[260px] flex flex-col justify-between"
+          whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(239,65,73,0.35)" }}
+          className="
+            bg-black/50 border border-[#ef4149] rounded-2xl 
+            p-5 sm:p-6 backdrop-blur-md 
+            min-h-[220px] flex flex-col justify-between
+          "
         >
-          <div>
-            <h3 className="font-bold text-[18px] mb-3">Other Projects</h3>
-            <ul className="text-[13px] opacity-80 leading-tight space-y-[5px] text-left p-2">
-              {otherProjects.map((p, idx) => (
-                <li key={idx}>• {p}</li>
-              ))}
-            </ul>
-          </div>
+          <h3 className="font-bold text-lg mb-3">Other Projects</h3>
+
+          <ul className="text-xs sm:text-sm opacity-80 leading-tight space-y-1 text-left">
+            {otherProjects.map((p, i) => (
+              <li key={i}>• {p}</li>
+            ))}
+          </ul>
 
           <a 
             href="https://github.com/abypious"
-            className="text-[#ef4149] text-[14px] mt-auto hover:underline self-end flex items-center gap-1"
+            className="text-[#ef4149] text-sm mt-4 hover:underline self-end flex items-center gap-1"
           >
-            View GitHub <ExternalLink size={18}/>
+            View GitHub <ExternalLink size={16}/>
           </a>
         </motion.div>
-
       </motion.div>
     </PageTemplate>
   );

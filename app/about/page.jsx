@@ -3,11 +3,12 @@ import AboutCard from "./AboutCard";
 
 export default function AboutPage() {
   return (
-    <PageTemplate 
+    <PageTemplate
       title="About Me"
-      helpText="Click the circular profile to expand/collapse the card">
-      <div className="flex justify-center items-center min-h-[70vh] sm:min-h-[80vh] px-4">
-        <AboutCard scale={1.2} />
+      helpText="Tap / click the circular profile to expand/collapse the card"
+    >
+      <div className="flex justify-center items-center min-h-[60vh] sm:min-h-[70vh] px-2 sm:px-4">
+        <AboutCard />
       </div>
     </PageTemplate>
   );
