@@ -11,7 +11,7 @@ const majorProjects = [
     date: "Mar 2025",
     stack: ["Flutter", "Arduino", "Firebase", "ML"],
     desc: "AI-powered soil analysis app providing smart irrigation and fertilizer recommendations.",
-    link: "#"
+    link: "https://github.com/abypious/Seed.git"
   },
   {
     name: "Intelligent Learning Assistant",
@@ -19,7 +19,7 @@ const majorProjects = [
     date: "Jan 2022",
     stack: ["Python", "TensorFlow", "OpenCV"],
     desc: "Emotion recognition system to support autism learning with adaptive responses.",
-    link: "#"
+    link: "https://github.com/abypious/Intelligent-learning-assistant.git"
   },
   {
     name: "Vote Ready",
@@ -27,7 +27,7 @@ const majorProjects = [
     date: "Mar 2024",
     stack: ["Flutter", "Firebase", "Gamification"],
     desc: "Gamified mobile app for training 500+ officers under tight deadlines.",
-    link: "#"
+    link: "https://github.com/abypious/vote-ready.git"
   },
   {
     name: "Mavericks",
@@ -35,7 +35,7 @@ const majorProjects = [
     date: "Dec 2023",
     stack: ["Flutter", "ESP32", "Bluetooth"],
     desc: "Mobile app for live vehicle telemetry and remote start — won 1st place.",
-    link: "#"
+    link: "https://github.com/abypious/maverics.git"
   },
   {
     name: "De-Mentor",
@@ -43,22 +43,23 @@ const majorProjects = [
     date: "Jul 2024",
     stack: ["React", "Node"],
     desc: "Platform offering structured 5-week addiction recovery guidance.",
-    link: "#"
+    link: "https://github.com/abypious/De-Mentor.git"
   },
 ];
 
 const otherProjects = [
-  "FooBoo – Food Booking App",
-  "DrySense – ESP32 Wetness Detector",
-  "Attendance Management System",
-  "Employee Management System",
-  "Task Manager",
-  "Next-Bus Real-Time Tracker",
+  { name: "FooBoo – Food Booking App", link: "https://github.com/abypious/FoodBoo.git" },
+  { name: "DrySense – ESP32 Wetness Detector", link: "https://github.com/abypious/Dry-Sense.git" },
+  { name: "Attendance Management System", link: "https://github.com/abypious/attendance-management.git" },
+  { name: "Employee Management System", link: "https://github.com/abypious/Employee-Management.git" },
+  { name: "Task Manager", link: "https://github.com/abypious/Simple-Task-Manager.git" },
+  { name: "Next-Bus Real-Time Tracker", link: "https://github.com/abypious/Next-Bus.git" },
 ];
+
 
 export default function ProjectPage() {
   return (
-    <PageTemplate title="Projects" helpText="Major projects + highlights.">
+    <PageTemplate title="Projects" helpText="Tap a card or item to open its repository.">
 
       {/* Responsive Grid */}
       <motion.div
@@ -79,16 +80,17 @@ export default function ProjectPage() {
         animate={{ opacity: 1 }}
       >
         {majorProjects.map((item, i) => (
-          <motion.div
+          <motion.a
             key={i}
+            href={item.link}
+            target="_blank"
             whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(239,65,73,0.35)" }}
             transition={{ duration: 0.22 }}
             className="
               bg-black/50 border border-[#ef4149] rounded-2xl 
-              p-5 sm:p-6 
-              backdrop-blur-md 
+              p-5 sm:p-6 backdrop-blur-md 
               flex flex-col justify-between 
-              min-h-[220px] 
+              min-h-[220px] cursor-pointer
             "
           >
             {/* Header */}
@@ -116,42 +118,38 @@ export default function ProjectPage() {
                 <span className="text-[10px] sm:text-[12px] px-2 py-[2px] border border-[#ef4149] rounded-md opacity-80">
                   {item.date}
                 </span>
-
-                <a 
-                  href={item.link} 
-                  className="text-[#ef4149] text-xs sm:text-sm flex gap-1 items-center hover:underline"
-                >
-                  View <ExternalLink size={14}/>
-                </a>
               </div>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
 
         {/* Other Projects card */}
-        <motion.div
+        <motion.a
           whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(239,65,73,0.35)" }}
+          href="https://github.com/abypious"
+          target="_blank"
           className="
             bg-black/50 border border-[#ef4149] rounded-2xl 
             p-5 sm:p-6 backdrop-blur-md 
-            min-h-[220px] flex flex-col justify-between
+            min-h-[220px] flex flex-col justify-between cursor-pointer
           "
         >
           <h3 className="font-bold text-lg mb-3">Other Projects</h3>
 
-          <ul className="text-xs sm:text-sm opacity-80 leading-tight space-y-1 text-left">
-            {otherProjects.map((p, i) => (
-              <li key={i}>• {p}</li>
+          <ul className="text-xs sm:text-sm leading-tight space-y-2 text-left">
+            {otherProjects.map((proj, i) => (
+              <li key={i}>
+                <span className="opacity-80 hover:opacity-100 hover:text-[#ef4149] transition-all duration-200 flex items-center gap-1">
+                  • {proj.name}
+                </span>
+              </li>
             ))}
           </ul>
 
-          <a 
-            href="https://github.com/abypious"
-            className="text-[#ef4149] text-sm mt-4 hover:underline self-end flex items-center gap-1"
-          >
+          <span className="text-[#ef4149] text-sm mt-4 underline self-end flex items-center gap-1">
             View GitHub <ExternalLink size={16}/>
-          </a>
-        </motion.div>
+          </span>
+        </motion.a>
       </motion.div>
     </PageTemplate>
   );

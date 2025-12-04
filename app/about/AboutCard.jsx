@@ -74,14 +74,14 @@ export default function AboutCard() {
           whileHover={!open ? imageHover : expandedHover}
           className="
             flex flex-col items-center lg:items-start 
-            gap-3 sm:gap-4 
+            gap-1 sm:gap-4 
             flex-shrink-0
           "
         >
           <motion.img
             src="/Profile.jpg"
             width={open ? 160 : 360}
-            height={open ? 160 : 260}
+            height={open ? 160 : 360}
             alt="Profile"
             className="rounded-full border border-[#ef41494f] object-cover"
             layout="position"
@@ -247,8 +247,8 @@ export default function AboutCard() {
             <motion.div
               variants={fadeItem}
               className="
-                md:col-span-3
-                flex flex-col sm:flex-row gap-3 sm:gap-4 mt-3
+                md:col-span-3 
+                flex flex-col sm:flex-row gap-3 sm:gap-4 mt-3 min-h-[90px]
               "
             >
               <button

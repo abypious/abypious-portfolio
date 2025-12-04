@@ -3,6 +3,10 @@ import CustomCursor from "../components/CustomCursor.jsx";
 
 export const metadata = {
   title: "Aby Pious | Portfolio",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
