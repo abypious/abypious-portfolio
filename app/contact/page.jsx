@@ -10,6 +10,7 @@ import {
   Instagram,
   Send,
   Check,
+  MapPin,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -77,7 +78,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-center gap-3 hover:opacity-100 hover:scale-[1.02] transition-all">
-                <span className="text-[#ef4149] text-lg sm:text-xl">📍</span>
+                <MapPin className="text-[#ef4149]" />
                 <span>Bangalore, India</span>
               </div>
             </div>

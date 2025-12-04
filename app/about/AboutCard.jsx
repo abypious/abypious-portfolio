@@ -61,10 +61,10 @@ export default function AboutCard() {
         layout
         className="
           bg-[#0d0d0d] border border-[#ef41494f] 
-          w-full h-full 
+          w-full  
           rounded-3xl shadow-xl 
           p-5 sm:p-6 lg:p-8 
-          relative overflow-hidden
+          relative overflow-x-hidden
           flex flex-col lg:flex-row gap-6
         "
       >
@@ -248,9 +248,9 @@ export default function AboutCard() {
               variants={fadeItem}
               className="
                 md:col-span-3 
-                flex flex-col sm:flex-row gap-3 sm:gap-4 mt-3 min-h-[90px]
-              "
-            >
+                flex flex-col sm:flex-row gap-3 sm:gap-4 mt-3 
+                min-h-[90px] sm:min-h-[60px] lg:min-h-[40px]              "
+              >
               <button
                 className="
                   flex-1 

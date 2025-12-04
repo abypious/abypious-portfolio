@@ -57,10 +57,8 @@ export default function CubeScene({ setHovered }) {
           onMouseEnter={!isMobile ? () => setHovered(item.label) : undefined}
           onMouseLeave={!isMobile ? () => setHovered(null) : undefined}
 
-          // 👇 Desktop click navigation
           onClick={!isMobile ? () => router.push(item.href) : undefined}
 
-          // 👇 Mobile long press logic
           onTouchStart={isMobile ? () => handleTouchStart(item.label) : undefined}
           onTouchEnd={isMobile ? () => handleTouchEnd(item.href) : undefined}
         >
