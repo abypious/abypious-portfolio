@@ -37,7 +37,7 @@ export default function PageTemplate({ title, children, helpText }) {
 
       {/* CONTENT */}
       <div className="flex justify-center w-full">
-        <div className="opacity-90 text-base sm:text-lg max-w-5xl text-center px-2 sm:px-4">
+        <div className="opacity-90 text-base sm:text-lg max-w-5xl text-center px-2 sm:px-4 scale-100">
           {children}
         </div>
       </div>

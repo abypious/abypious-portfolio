@@ -45,7 +45,7 @@ export default function CubePage() {
   }, [hovered]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-black text-white relative overflow-x-hidden p-4">
+    <section className="h-screen overflow-hidden flex items-center justify-center bg-black text-white relative overflow-x-hidden p-4">
 
     <MobileExperienceNotice />
 
@@ -79,7 +79,7 @@ export default function CubePage() {
 
       {/* ---- Hover Label (Bottom-Right) ---- */}
       <div
-        className={`fixed bottom-6 right-6 font-mono text-red-400 transition-all duration-200 
+        className={`fixed bottom-6 right-6 font-mono text-red-400 duration-200 
         ${hovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
         style={{ fontSize: "clamp(1.4rem, 2.2vw, 2.6rem)" }}
       >

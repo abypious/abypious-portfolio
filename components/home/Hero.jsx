@@ -9,7 +9,7 @@ export default function Hero() {
   const [activated, setActivated] = useState(false);
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative bg-black text-white overflow-x-hidden">
+    <section className="h-screen overflow-hidden flex items-center justify-center relative bg-black text-white overflow-x-hidden">
 
       <motion.h1
         onClick={() => setActivated(true)}
